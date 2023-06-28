@@ -1,11 +1,11 @@
 # Lottery-Scheduling-Algorithm
 
 A lottery scheduling algorithm is a fascinating approach to CPU process scheduling and process management. It is known as a **proportional share** approach, also sometimes referred to as a **fair-share** scheduler. The general idea is that instead of optimizing for turnaround time
-or reponse time, a schedular might instead try to gurantee that each job obtain a certain percentage of CPU time. The baic idea of a lottery
+or response time, a schedular might instead try to guarantee that each job obtain a certain percentage of CPU time. The baic idea of a lottery
 scheduler is quite simple: every so often a lottery is held to determine which processs should run next. Processes that run more often should be
 given more chances to win the lottery. 
 
-Underlying lottery scheduling is one simple concept: **tickets**, which are used to represent the ahare of a resource that a process (or user or whatever) should receive. The percent of tickets that a process has represents its share of the resource in question. Let's look at an exammple. Imagine two processes, A and B, and imagine that A has 75 tickets while B has 25. Thus, what we would like is for A to receive 75% of the CPU and B the remaining 25%. Lottery scheduling acheives this probabilistically (non-deterministically) by holding a lottery every so oftem (pehaps every time slice). Holding a lottery is straightforward: the ccheduler must know how many total tickets there are (in our example, there are 100). The scheduler then picks a winning ticket, which is a number from 0 to 99. Assuming A holds tickets 0 through 74 and B 75 to 99, the winning ticket simply determines whether A or B runs. The schduler than loads the state of that winning process and runs it. 
+Underlying lottery scheduling is one simple concept: **tickets**, which are used to represent the share of a resource that a process (or user or whatever) should receive. The percent of tickets that a process has represents its share of the resource in question. Let's look at an example. Imagine two processes, A and B, and imagine that A has 75 tickets while B has 25. Thus, what we would like is for A to receive 75% of the CPU and B the remaining 25%. Lottery scheduling acheives this probabilistically (non-deterministically) by holding a lottery every so oftem (pehaps every time slice). Holding a lottery is straightforward: the scheduler must know how many total tickets there are (in our example, there are 100). The scheduler then picks a winning ticket, which is a number from 0 to 99. Assuming A holds tickets 0 through 74 and B 75 to 99, the winning ticket simply determines whether A or B runs. The schduler than loads the state of that winning process and runs it. 
 
 Here is an example output of a lottery scheduler's winning tickets:
 
@@ -24,8 +24,8 @@ Here is an example output of a lottery scheduler's winning tickets:
    approaches. First, random often avoids strange corner-case behaviors that a more traditonal algorithm may have trouble handling.For example,
    consider LRU page replacement; while oftem a good replacement algorithm, LRU perfoms pessimally for some cyclic-sequential workloads. Random.
    on the other hand, has no such worst case. Second, random is also lightweight, requirirng little state to track alternatives. In a 
-   traditional fair-share algorithm. tracking how much CPU each process has received requires per-process accounting, which must be updated
-   after running each process. Doing so randomly necessitates omly the most minimal of per-process state. Finally. random can be extremely fast.
+   traditional fair-share algorithm, tracking how much CPU each process has received requires per-process accounting, which must be updated
+   after running each process. Doing so randomly necessitates only the most minimal of per-process state. Finally. random can be extremely fast.
    As long as generating a random number is quick, making the decision is also, and thus random can be used in a number of places where speed
    is requitred. Of course, the faster the need, the more random tends toward pseudo-random.
 
